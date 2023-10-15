@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Grouped Bar and Line Chart",
+  "data": {
+    "url": "https://raw.githubusercontent.com/ZhuojiaWu/3179A2/main/Data/Total%20overseas%20arrivals%20and%20departures%20-%20Jul%202013-Jul%202023.csv"
+  },
+  
+  "vconcat": [
+    {"width":700,
+      "encoding": {
+        "x": {"field": "Years"},
+        "y": {"field": "Population(Million)", "type": "quantitative"},
+        "color": {"field": "Arrive/Depart"},
+        "xOffset": {"field": "Arrive/Depart"}
+      },
+      "layer": [{
+          "mark": {"type":"bar"}
+        }, 
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "bottom",
+            "dy": 0,
+            "fontSize": 8
+          },
+          "encoding": {
+            "text": {"field": "Population(Million)", "type": "quantitative"}
+          }
+        }]
+    },
+  
+    {
+      "mark": {"type":"line","strokeWidth":5},
+      "encoding": {
+        "column": {"field": "Arrive/Depart"},
+        "x": {"field": "Years"},
+        "y": {"field": "Population(Million)", "type": "quantitative"},
+        "color": {"field": "Arrive/Depart","title":"Arrival/Departure"},
+        "tooltip": [
+          {"field": "Years"},
+          {"field": "Population(Million)"}
+        ]
+        
+      },
+      "width":350}
+  ]
+}

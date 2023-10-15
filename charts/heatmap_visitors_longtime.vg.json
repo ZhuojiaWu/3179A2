@@ -1,0 +1,80 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "url": "https://raw.githubusercontent.com/ZhuojiaWu/3179A2/main/Data/Short-term%20visitor%20arrivals%20states%202013-2023.csv"
+    },
+    "width":"container",
+    "params": [
+        {
+          "name": "state_selection",
+          "bind": {
+            "input": "select",
+            "options": [
+              null,
+              "ACT",
+              "NT",
+              "TAS",
+              "SA",
+              "QLD",
+              "VIC",
+              "NSW"
+            ],
+            "labels": [
+              "Show All",
+              "ACT",
+              "NT",
+              "TAS",
+              "SA",
+              "QLD",
+              "VIC",
+              "NSW"
+            ],
+            "name": "State Selection: "
+          }
+        }
+      ],
+      "transform": [
+        {
+          "filter": "state_selection == null || datum.State == state_selection"
+        }
+        
+      ],
+    "mark": "rect",
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "timeUnit": "year",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 90
+            }
+            
+        },
+        "y": {
+            "field": "State",
+            "type": "nominal"
+        },
+        "color": {
+            "field": "Number_of_visitors",
+            "type": "quantitative",
+            "legend": {
+                "title": "Visitors number('000)"
+            },
+            "scale": {
+                "type": "threshold",
+                "domain": [1, 50,100, 1000,3000,4000]
+                
+                } 
+        },
+        "tooltip": [
+            {"field": "State", "type": "nominal"},
+            {"field": "Year", "timeUnit": "year","type": "temporal", "title": "Year"},
+            {"field": "Number_of_visitors", "type": "quantitative","title":"visitors number in thousand","format":".0f"}
+        ],
+        "opacity": {
+            "condition": {"param": "state_selection", "value": 1}
+            }
+    }
+  }
+  

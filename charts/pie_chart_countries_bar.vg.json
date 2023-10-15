@@ -1,0 +1,55 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A pie chart showing the total visitor numbers for each country.",
+    "data": {
+      "url": "https://raw.githubusercontent.com/ZhuojiaWu/3179A2/main/Data/visitor%20top%2010%20countries.csv"
+    },
+    "width":"container",
+    "params": [
+      {
+        "name": "time_period_selection",
+        "bind": {
+          "input": "select",
+          "options": [
+            null,
+            2012,
+            2018,
+            2021,
+            2022
+          ],
+          "labels": [
+            "Show All",
+            "2012",
+            "2018",
+            "2021",
+            "2022"
+          ],
+          "name": "Time Period Selection: "
+        }
+      }
+    ],
+    "transform": [
+      {
+        "filter": "time_period_selection == null || datum.Years == time_period_selection"
+      }
+      
+    ],
+    "mark": {
+      "type": "arc",
+      "stroke": "black",
+      "strokeOpacity": 0.2
+    },
+    "encoding": {
+      "theta": {"aggregate": "sum", "field": "visitor_numbers", "type": "quantitative"},
+      "color": {"field": "Country", "type": "nominal"},
+      "tooltip": [
+        {"field": "Country", "type": "nominal"},
+        {"field": "visitor_numbers", "type": "quantitative", "title": "Total Visitors", "format": ".0f","aggregate":"sum"}
+        
+
+      ]
+      
+      
+    }
+  }
+  

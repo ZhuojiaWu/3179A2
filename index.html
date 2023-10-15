@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FIT3179 A2</title>
+  <!-- Import Vega & Vega-Lite -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+
+</head>
+
+<body>
+  
+  <div class="page">
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1>Overseas Arrivals and Departures, Australia </h1>
+        <p style="color: red;">Note: data of year 2020 might be missing in some cases due to the pandemic.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+        
+
+        <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2>Number of Residents return to Australia by Year</h2>
+        <p>The following multiple small maps display the <b>number of residents</b> return to 
+          each state in Australia in four different years. <u> Selection menu can be used to select particular state</u></p>
+      </div>
+      <div class="pure-u-1-1">
+        <div id="vis5" class="vis-container"></div>
+      </div>
+    </div>
+      <!-- end pure grid group -->
+
+      <!-- pure grid group -->
+    <div class="pure-g">     
+      <div class="pure-u-1-1">
+        <h2>Number of Residents vs Number of Visitors arrived in Australia</h2>
+        <p>The following chart compares the total number of <span style="color: darkorange;">visitors</span> and 
+          <span style="color: rgb(24, 24, 184);">residents</span> arrive in Australia from 2019 to 2023, excluding 2020. The graph specifies the population for 7 different states in Australia. 
+        <b>NSW</b> has the highest population for both categories.</p>
+      </div>
+      <div class="pure-u-1-1">
+        <div id="vis6" class="vis-container"></div>
+      </div>
+    </div>
+      <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">    
+      <div class="pure-u-1-1">
+        <h2>Number of Visitors arrive in Australia 2013-2023</h2>
+        <p>The heatmap compares the <b>number of visitors(in thousand)</b> arrive in different states in Australia from 2013 to 2023. <u> Selection menu can be used to select particular state</u></p>
+      </div>
+      <div class="pure-u-1-1">
+        <div id="vis2" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+  
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2>Arrivals and Departures by Category of Travel by Year</h2>
+        <p>The following chart shows the number of <b>arrivals and departures in different categories </b> from 2019 to 2023, excluding 2020. 
+          <span style="color: red;">Permanent arrivals</span> does not apply to the departure. 
+          <u> By clicking on different categories on the legend highlight the particular category</u></p>
+      </div>
+      <div class="pure-u-1-1">
+        <div id="vis1" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+     <!-- pure grid group -->
+     <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2>Total Arrivals and Departure 2013-2022</h2>
+        <p>The following chart shows the population(in million) <span style="color: rgb(24, 24, 184);">arrive</span> and 
+          <span style="color: darkorange;">depart</span> Australia from 2013 to 2022 accompanies with the trends of these two categories  </p>
+      </div>
+        <div class="pure-u-1-1">
+          <div id="vis4" ></div>
+        </div>
+      </div>
+      <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2>Countries where Visitors came from</h2>
+        <p>The following chart shows the proportion of number of visitors from 10 different countries. The top country is <span style="color: rgb(170, 25, 202);">New Zealand</span>. <u> Selection menu can be used to select particular year</u></p>
+      </div>
+        <div class="pure-u-1-1">
+          <div id="vis3" class="vis-container"></div>
+        </div>
+      </div>
+      <!-- end pure grid group -->
+    
+      <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h3>There is a common trend in most of the charts which relate to different years. Year 2020/2021 usually has the smallest population due to the pandemic.</h3>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+     
+  </div> <!-- end page -->
+
+
+
+  <!-- inserting all charts -->
+  <script type="text/javascript">
+    var specVis1 = "charts/stacked_bar_chart.vg.json";
+    var specVis2 = "charts/heatmap_visitors_longtime.vg.json";
+    var specVis3 = "charts/pie_chart_countries_bar.vg.json";
+    var specVis4 = "charts/line+bar.vg.json";
+    var specVis5 = "charts/multiple_map_resident.vg.json";
+    var specVis6 = "charts/visitors_residents.vg.json";
+
+    vegaEmbed('#vis1', specVis1, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+    vegaEmbed('#vis5', specVis5, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+    vegaEmbed('#vis6', specVis6, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+  </script>
+</body>
+
+</html>

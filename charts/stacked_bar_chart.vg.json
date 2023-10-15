@@ -1,0 +1,26 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "https://raw.githubusercontent.com/ZhuojiaWu/3179A2/main/Data/Arrivals%20and%20departures%20by%20category%20of%20travel.csv"},
+    "mark": "bar",
+    "width":600,
+    "params":[{"name":"Categories_highlighted",
+    "select": {"type": "point","fields": ["Sub_categories"]},"bind":"legend"}],
+    "encoding": {
+      "row": {"field":"Year"}, 
+      "x": {"aggregate": "sum", "field": "Value","type": "quantitative","title":"Total population"},
+      "y": {"field": "Categories","type":"nominal","title":null},
+      "color": {"field": "Sub_categories", "title":"Category","type": "nominal","scale": {
+        "range": ["orange", "blue", "red"]}
+    },
+      "tooltip": [
+        {"field": "Categories", "type": "nominal"},
+        {"field": "Sub_categories", "type": "nominal"},
+        {"field": "Value", "type": "quantitative","title":"Number of people"}
+    ],
+    "opacity": {
+        "condition": {"param": "Categories_highlighted", "value": 1},
+        "value": 0.2
+        }
+    }
+  }
+  

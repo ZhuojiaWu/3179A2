@@ -1,0 +1,82 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": { "url": "https://raw.githubusercontent.com/ZhuojiaWu/3179A2/main/Data/Short-term%20visitor%20arrivals%2C%20state%2019-23.csv" },
+  "hconcat":[  
+
+    
+{"transform": [
+    {"filter": "datum.Categories == 'number_of_visitors'"},
+    {"calculate": "'Visitors'", "as": "category"}    ],
+  "width": 350,
+  "height": 200,
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "StateorTerritory",
+      "axis":null
+
+    },
+    "x": {
+      "field": "Population",
+      "aggregate":"sum",
+      "title":"Number of visitors",
+      "sort": "descending"  
+    },
+    "color": {
+      "field": "category"        
+    },
+    "tooltip": [
+      {"field": "StateorTerritory", "type": "nominal", "title": "State"},
+      {"field": "Population", "type": "quantitative","aggregate":"sum","title":"Population"}
+    ]
+  }},
+  {
+    "width": 5,
+    "height": 200,
+    "mark": "text",
+    "encoding": {
+        "text": {
+          "field": "StateorTerritory",
+          "type": "nominal"
+        },
+        "x": { "value": 10 }, 
+        "y": { "field": "StateorTerritory" ,"axis":null},
+        "angle": { "value": 0 }
+      }
+},
+  
+  {
+    "transform": [
+      {"filter": "datum.Categories == 'number_of_residents'"},
+      {"calculate": "'Residents'", "as": "category"}
+    ],
+    "width": 350,
+    "height": 200,
+    "mark": "bar",
+    "encoding": {
+      "y": {
+        "field": "StateorTerritory",
+        "axis": null
+      },
+      "x": {
+        "field": "Population",
+        "aggregate": "sum",
+        "title": "Number of residents"
+      },
+      "color": {
+        "field": "category"
+
+      },
+      "tooltip": [
+        {"field": "StateorTerritory", "type": "nominal", "title": "State"},
+        {"field": "Population", "type": "quantitative", "aggregate": "sum"}
+      ]
+    }
+  }
+  
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"grid": false}
+  }
+}
